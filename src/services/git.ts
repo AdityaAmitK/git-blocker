@@ -27,3 +27,12 @@ export async function getGitDirectory(): Promise<string> {
     "--git-dir",
   ]);
 }
+export async function getStagedFiles(): Promise<string[]> {
+  const output = await runGit([
+    "diff",
+    "--cached",
+    "--name-only",
+  ]);
+
+  return output.split("\n");
+}

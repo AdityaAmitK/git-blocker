@@ -5,6 +5,7 @@ import { registerInstallCommand } from "./commands/install";
 import { registerAddCommand } from "./commands/add";
 import { registerListCommand } from "./commands/list";
 import { registerRemoveCommand } from "./commands/remove";
+import { registerCheckCommand } from "./commands/check";
 
 const program = new Command();
 
@@ -17,5 +18,6 @@ registerInstallCommand(program);
 registerAddCommand(program);
 registerListCommand(program);	
 registerRemoveCommand(program);
+registerCheckCommand(program);
 
 program.parse();
