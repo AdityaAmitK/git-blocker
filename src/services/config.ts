@@ -109,3 +109,19 @@ export function listRules(
   
 	writeConfig(gitDirectory, config);
   }
+  export function uninstallConfig(
+    gitDirectory: string,
+  ): boolean {
+    const configDirectory = getConfigDirectory(gitDirectory);
+  
+    if (!fs.existsSync(configDirectory)) {
+      return false;
+    }
+  
+    fs.rmSync(configDirectory, {
+      recursive: true,
+      force: true,
+    });
+  
+    return true;
+  }

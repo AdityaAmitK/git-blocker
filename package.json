@@ -2,15 +2,19 @@
   "name": "git-blocker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "tsc",
+    "build": "tsc && npm run copy-templates",
+    "copy-templates": "cpy \"src/templates/**/*\" dist/templates",
     "start": "node dist/index.js"
   },
   "bin": {
     "git-blocker": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -24,6 +28,7 @@
   "devDependencies": {
     "@types/micromatch": "^4.0.10",
     "@types/node": "^26.1.0",
+    "cpy-cli": "^7.0.0",
     "tsx": "^4.23.0",
     "typescript": "^6.0.3"
   }

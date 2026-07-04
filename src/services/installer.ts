@@ -1,12 +1,8 @@
 import { ensureConfigExists, isConfigInstalled } from "./config.js";
-import {
-  getGitDirectory,
-  isGitRepository,
-} from "./git.js";
+import { getGitDirectory, isGitRepository } from "./git.js";
+import { installHook } from "./hook.js";
 
-export type InstallResult =
-  | "installed"
-  | "already-installed";
+export type InstallResult = "installed" | "already-installed";
 
 export async function install(): Promise<InstallResult> {
   if (!(await isGitRepository())) {
@@ -15,11 +11,17 @@ export async function install(): Promise<InstallResult> {
 
   const gitDirectory = await getGitDirectory();
 
-  if (isConfigInstalled(gitDirectory)) {
-    return "already-installed";
+  const configAlreadyInstalled = isConfigInstalled(gitDirectory);
+
+  if (!configAlreadyInstalled) {
+    ensureConfigExists(gitDirectory);
   }
 
-  ensureConfigExists(gitDirectory);
+  const hookInstalled = installHook(gitDirectory);
+
+  if (configAlreadyInstalled && !hookInstalled) {
+    return "already-installed";
+  }
 
   return "installed";
 }
