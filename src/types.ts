@@ -7,3 +7,7 @@ export interface Rule {
 	rules: Rule[];
   }
   
+  export type Match = {
+	rule: Rule;
+	file: string;
+  };
