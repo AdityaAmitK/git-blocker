@@ -6,3 +6,4 @@ export interface Rule {
   export interface Config {
 	rules: Rule[];
   }
+  
