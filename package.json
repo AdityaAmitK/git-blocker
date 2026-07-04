@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "tsc && npm run copy-templates",
+    "build": "tsc && npm run postbuild",
+    "postbuild": "chmod +x dist/index.js && npm run copy-templates",
     "copy-templates": "cpy \"src/templates/**/*\" dist/templates",
     "start": "node dist/index.js"
   },
