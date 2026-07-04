@@ -91,3 +91,21 @@ export function listRules(
   
 	return config.rules;
   }
+  export function removeRule(
+	gitDirectory: string,
+	pattern: string,
+  ): void {
+	const config = readConfig(gitDirectory);
+  
+	const initialLength = config.rules.length;
+  
+	config.rules = config.rules.filter(
+	  (rule) => rule.pattern !== pattern,
+	);
+  
+	if (config.rules.length === initialLength) {
+	  throw new Error("Rule not found.");
+	}
+  
+	writeConfig(gitDirectory, config);
+  }
