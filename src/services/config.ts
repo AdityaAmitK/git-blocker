@@ -84,3 +84,10 @@ export function addRule(
 
   writeConfig(gitDirectory, config);
 }
+export function listRules(
+	gitDirectory: string,
+  ): Rule[] {
+	const config = readConfig(gitDirectory);
+  
+	return config.rules;
+  }

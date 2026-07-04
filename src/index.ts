@@ -3,6 +3,7 @@
 import { Command } from "commander";
 import { registerInstallCommand } from "./commands/install";
 import { registerAddCommand } from "./commands/add";
+import { registerListCommand } from "./commands/list";
 
 const program = new Command();
 
@@ -13,5 +14,6 @@ program
 
 registerInstallCommand(program);
 registerAddCommand(program);
+registerListCommand(program);	
 
 program.parse();
